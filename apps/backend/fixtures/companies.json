@@ -1,0 +1,57 @@
+[
+  {
+    "id": "company-1",
+    "name": "Acme Corporation",
+    "website": "https://acme-corp.example.com",
+    "industry": "Software",
+    "description": "Leading provider of enterprise software solutions for supply chain management and logistics.",
+    "logoUrl": "https://via.placeholder.com/200x200/3B82F6/FFFFFF?text=ACME",
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-15T10:00:00Z",
+    "updatedAt": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "company-2",
+    "name": "TechVentures Inc",
+    "website": "https://techventures.example.com",
+    "industry": "Technology",
+    "description": "Fast-growing tech startup specializing in AI-powered analytics and business intelligence.",
+    "logoUrl": "https://via.placeholder.com/200x200/10B981/FFFFFF?text=TV",
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-18T14:30:00Z",
+    "updatedAt": "2026-01-18T14:30:00Z"
+  },
+  {
+    "id": "company-3",
+    "name": "GlobalHealth Solutions",
+    "website": "https://globalhealth.example.com",
+    "industry": "Healthcare",
+    "description": "Healthcare technology company focused on telemedicine and patient management systems.",
+    "logoUrl": "https://via.placeholder.com/200x200/EF4444/FFFFFF?text=GHS",
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-20T09:15:00Z",
+    "updatedAt": "2026-01-20T09:15:00Z"
+  },
+  {
+    "id": "company-4",
+    "name": "RetailMax Group",
+    "website": "https://retailmax.example.com",
+    "industry": "Retail",
+    "description": "Multi-channel retail company with 500+ stores nationwide and growing e-commerce presence.",
+    "logoUrl": "https://via.placeholder.com/200x200/F59E0B/FFFFFF?text=RM",
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-22T11:00:00Z",
+    "updatedAt": "2026-01-22T11:00:00Z"
+  },
+  {
+    "id": "company-5",
+    "name": "FinanceFirst Partners",
+    "website": "https://financefirst.example.com",
+    "industry": "Financial Services",
+    "description": "Investment management firm serving institutional clients and high-net-worth individuals.",
+    "logoUrl": "https://via.placeholder.com/200x200/8B5CF6/FFFFFF?text=FFP",
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-25T15:45:00Z",
+    "updatedAt": "2026-01-25T15:45:00Z"
+  }
+]

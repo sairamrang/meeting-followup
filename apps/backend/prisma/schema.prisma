@@ -1,0 +1,426 @@
+// Prisma schema for Meeting Follow-Up System
+// This file defines the database schema for PostgreSQL via Supabase
+// Enhanced version with Companies, Contacts, and improved content management
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// CORE ENTITIES
+// ============================================================================
+
+// Companies table - Central repository for prospect/partner companies
+model Company {
+  id            String  @id @default(uuid())
+  name          String // "Acme Corporation"
+  website       String? // "https://acme.com"
+  industry      String? // "Software", "Healthcare", etc.
+  description   String? @db.Text // Brief company description
+  logoUrl       String? @map("logo_url") // Company logo
+  mainContactId String? @map("main_contact_id") // Primary contact for this company
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdBy String   @map("created_by") // User ID who added this company
+
+  // Relations
+  followups         Followup[]       @relation("ReceiverCompany") // Legacy relation
+  senderFollowups   Followup[]       @relation("SenderCompany") // Followups sent from this company
+  receiverFollowups Followup[]       @relation("ReceiverCompanyNew") // Followups sent to this company
+  contacts          Contact[]
+  companyContent    CompanyContent[]
+
+  @@index([name])
+  @@index([createdBy])
+  @@index([mainContactId])
+  @@map("companies")
+}
+
+// Contacts table - People at prospect companies
+model Contact {
+  id        String @id @default(uuid())
+  companyId String @map("company_id")
+
+  // Contact info
+  name        String
+  email       String?
+  phone       String?
+  role        String? // "VP Sales", "CTO", "Product Manager"
+  linkedinUrl String? @map("linkedin_url")
+
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  company           Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  followupContacts  FollowupContact[]
+  senderFollowups   Followup[]        @relation("SenderContact") // Followups where this contact is the sender
+  receiverFollowups Followup[]        @relation("ReceiverContact") // Followups where this contact is the receiver
+
+  @@index([companyId])
+  @@index([email])
+  @@map("contacts")
+}
+
+// Followups table - Core entity for meeting follow-ups
+model Followup {
+  id     String @id @default(uuid())
+  userId String @map("user_id") // Clerk user ID (sales rep who created this)
+
+  // Sender & Receiver Companies
+  senderCompanyId   String @map("sender_company_id") // User's company
+  receiverCompanyId String @map("receiver_company_id") // Prospect company (formerly companyId)
+
+  // Main Participants
+  senderId   String? @map("sender_id") // Main contact from sender company (Contact ID)
+  receiverId String? @map("receiver_id") // Main contact from receiver company (Contact ID)
+
+  // Legacy field for backward compatibility - maps to receiverCompanyId
+  companyId String @map("company_id") // DEPRECATED: Use receiverCompanyId
+
+  status   FollowupStatus  @default(DRAFT)
+  slug     String?         @unique // Unique URL slug for published follow-ups
+  template TemplateStyle? // Design template for public view (MODERN, CONSERVATIVE, HYBRID)
+
+  // Meeting details
+  title           String
+  meetingDate     DateTime    @map("meeting_date") @db.Date
+  meetingType     MeetingType @map("meeting_type")
+  meetingLocation String?     @map("meeting_location") // "Zoom", "Their Office", etc.
+  product         String? // Product/solution discussed
+
+  // Content
+  meetingRecap      String? @map("meeting_recap") @db.Text // Rich text HTML or plain text
+  valueProposition  String? @map("value_proposition") @db.Text // Rich text HTML describing the value proposition
+  meetingNotesUrl   String? @map("meeting_notes_url") // External link (Google Docs, Notion, AI notes)
+  videoRecordingUrl String? @map("video_recording_url") // Link to meeting recording
+  nextSteps         Json?   @map("next_steps") // Array of {action, owner, deadline, completed}
+
+  // Company content selection
+  contentRefs      Json? @map("content_refs") // Array of library/company content IDs to include
+  contentOverrides Json? @map("content_overrides") // Local edits for this follow-up
+
+  // Timestamps
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  publishedAt DateTime? @map("published_at")
+
+  // Relations
+  company           Company            @relation("ReceiverCompany", fields: [companyId], references: [id], onDelete: Cascade)
+  senderCompany     Company            @relation("SenderCompany", fields: [senderCompanyId], references: [id], onDelete: Restrict)
+  receiverCompany   Company            @relation("ReceiverCompanyNew", fields: [receiverCompanyId], references: [id], onDelete: Cascade)
+  sender            Contact?           @relation("SenderContact", fields: [senderId], references: [id], onDelete: SetNull)
+  receiver          Contact?           @relation("ReceiverContact", fields: [receiverId], references: [id], onDelete: SetNull)
+  followupContacts  FollowupContact[] // Many-to-many with contacts
+  files             File[]
+  analyticsEvents   AnalyticsEvent[]
+  analyticsSessions AnalyticsSession[]
+  notifications     Notification[]     // Notification history
+  confirmations     FollowupConfirmation[] // Micro-commitment confirmations
+
+  @@index([userId])
+  @@index([companyId])
+  @@index([senderCompanyId])
+  @@index([receiverCompanyId])
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([status])
+  @@index([slug])
+  @@map("followups")
+}
+
+// FollowupContact - Junction table for follow-up attendees
+model FollowupContact {
+  followupId String  @map("followup_id")
+  contactId  String  @map("contact_id")
+  attended   Boolean @default(true) // Did they actually attend?
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+  contact  Contact  @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@id([followupId, contactId])
+  @@map("followup_contacts")
+}
+
+// ============================================================================
+// CONTENT MANAGEMENT
+// ============================================================================
+
+// CompanyContent table - Company-specific content (history, leadership, etc.)
+model CompanyContent {
+  id        String             @id @default(uuid())
+  companyId String?            @map("company_id") // NULL for global content
+  type      CompanyContentType
+  title     String
+  content   String             @db.Text // Rich text HTML
+  sortOrder Int?               @map("sort_order") // Display order
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdBy String   @map("created_by") // User ID
+
+  // Relations
+  company Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@index([type])
+  @@map("company_content")
+}
+
+// Library table - Global reusable content (your company's content)
+model Library {
+  id        String      @id @default(uuid())
+  type      LibraryType
+  title     String
+  content   String      @db.Text // Rich text HTML
+  sortOrder Int?        @map("sort_order") // Display order
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdBy String   @map("created_by") // User ID
+
+  @@index([type])
+  @@map("library")
+}
+
+// Templates table - Pre-built follow-up templates
+model Template {
+  id          String  @id @default(uuid())
+  name        String // "Sales Discovery Call", "Partnership Meeting"
+  slug        String  @unique
+  description String? @db.Text
+  structure   Json // Default sections: {sections: [{type, title, content}]}
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("templates")
+}
+
+// ============================================================================
+// FILE MANAGEMENT
+// ============================================================================
+
+// Files table - Uploaded resources (PDFs, presentations, etc.)
+model File {
+  id         String @id @default(uuid())
+  followupId String @map("followup_id")
+
+  filename    String
+  fileSize    Int     @map("file_size") // bytes
+  mimeType    String  @map("mime_type")
+  storagePath String  @map("storage_path") // Supabase Storage path
+  storageUrl  String  @map("storage_url") // Public CDN URL
+  description String? @db.Text // Optional description
+
+  uploadedAt DateTime @default(now()) @map("uploaded_at")
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+
+  @@index([followupId])
+  @@map("files")
+}
+
+// ============================================================================
+// ANALYTICS
+// ============================================================================
+
+// Analytics Events table - Individual tracking events
+model AnalyticsEvent {
+  id         String @id @default(uuid())
+  followupId String @map("followup_id")
+  sessionId  String @map("session_id") // Generated per visitor session
+
+  eventType EventType @map("event_type")
+  eventData Json?     @map("event_data") // Section name, file ID, link URL, etc.
+
+  // Visitor information (anonymized for GDPR)
+  deviceType      DeviceType @map("device_type")
+  browser         String?
+  locationCity    String?    @map("location_city")
+  locationCountry String?    @map("location_country")
+  ipHash          String     @map("ip_hash") // SHA-256 hashed for privacy
+
+  timestamp DateTime @default(now())
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+
+  @@index([followupId, timestamp])
+  @@index([sessionId])
+  @@map("analytics_events")
+}
+
+// Analytics Sessions table - Aggregated session data
+model AnalyticsSession {
+  id         String @id @default(uuid())
+  followupId String @map("followup_id")
+
+  sessionStart DateTime  @map("session_start")
+  sessionEnd   DateTime? @map("session_end")
+  pageDuration Int?      @map("page_duration") // seconds
+
+  // Visitor information
+  deviceType      DeviceType @map("device_type")
+  browser         String?
+  locationCity    String?    @map("location_city")
+  locationCountry String?    @map("location_country")
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+
+  @@index([followupId])
+  @@map("analytics_sessions")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum FollowupStatus {
+  DRAFT
+  PUBLISHED
+}
+
+enum MeetingType {
+  SALES
+  PARTNERSHIP
+  DEMO
+  DISCOVERY
+  TECHNICAL
+  OTHER
+}
+
+enum LibraryType {
+  ABOUT_US // Company history, mission, vision
+  VALUE_PROP // Why choose us, differentiators
+  CASE_STUDY // Customer success stories
+  TEAM_BIO // Leadership bios
+  PRODUCT // Product information
+  PRICING // Pricing information
+}
+
+enum CompanyContentType {
+  HISTORY // Prospect company history
+  LEADERSHIP // Prospect company leadership
+  PRODUCTS // Prospect company products
+  NEWS // Recent news/updates about prospect
+  NOTES // Internal notes about prospect
+}
+
+enum EventType {
+  PAGE_VIEW
+  SECTION_VIEW
+  SECTION_TIME   // Time spent viewing a section
+  SCROLL_DEPTH   // Scroll depth percentage reached
+  FILE_DOWNLOAD
+  LINK_CLICK
+  COPY_EMAIL     // Copied contact email
+  COPY_PHONE     // Copied contact phone
+}
+
+enum DeviceType {
+  MOBILE
+  TABLET
+  DESKTOP
+}
+
+enum TemplateStyle {
+  MODERN       // Bold, colorful, editorial design
+  CONSERVATIVE // Clean, professional, corporate design
+  HYBRID       // Balanced modern + professional
+}
+
+// ============================================================================
+// NOTIFICATIONS
+// ============================================================================
+
+// NotificationPreference - User notification settings
+model NotificationPreference {
+  id                 String  @id @default(uuid())
+  userId             String  @unique @map("user_id") // Clerk user ID
+  emailNotifications Boolean @default(true) @map("email_notifications")
+  notifyOnFirstView  Boolean @default(true) @map("notify_on_first_view")
+  notifyOnRevisit    Boolean @default(true) @map("notify_on_revisit")
+  notifyEmail        String? @map("notify_email") // Override email address
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("notification_preferences")
+}
+
+// Notification - Sent notifications log
+model Notification {
+  id         String           @id @default(uuid())
+  followupId String           @map("followup_id")
+  userId     String           @map("user_id") // Clerk user ID (recipient)
+  type       NotificationType
+  sentAt     DateTime         @default(now()) @map("sent_at")
+
+  // Viewer information (anonymized)
+  viewerIpHash        String?    @map("viewer_ip_hash") // Hashed for privacy
+  viewerDeviceType    DeviceType? @map("viewer_device_type")
+  viewerBrowser       String?    @map("viewer_browser")
+  viewerLocationCity  String?    @map("viewer_location_city")
+  viewerLocationCountry String?  @map("viewer_location_country")
+  viewerSessionId     String?    @map("viewer_session_id")
+
+  // Track if notification was sent successfully
+  delivered Boolean @default(false)
+  error     String? // Error message if delivery failed
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+
+  @@index([followupId])
+  @@index([userId])
+  @@index([sentAt])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  FIRST_VIEW
+  REVISIT
+}
+
+// ============================================================================
+// MICRO-COMMITMENT CONFIRMATIONS
+// ============================================================================
+
+// FollowupConfirmation table - Prospect micro-commitment confirmations
+model FollowupConfirmation {
+  id          String           @id @default(uuid())
+  followupId  String           @map("followup_id")
+  sessionId   String?          @map("session_id") // Link to analytics session (optional)
+  type        ConfirmationType
+  confirmedAt DateTime         @default(now()) @map("confirmed_at")
+  comment     String?          @db.Text // Optional feedback
+
+  // Relations
+  followup Followup @relation(fields: [followupId], references: [id], onDelete: Cascade)
+
+  @@index([followupId])
+  @@index([sessionId])
+  @@index([type])
+  @@map("followup_confirmations")
+}
+
+enum ConfirmationType {
+  RECAP_ACCURATE     // "Is this recap accurate?" - Yes
+  RECAP_INACCURATE   // "Is this recap accurate?" - No/Something's off
+  VALUE_PROP_CLEAR   // "Does this resonate?" - Yes
+  VALUE_PROP_UNCLEAR // "Does this resonate?" - Tell me more
+  INTERESTED         // "Interested? Book a call" - Yes, interested
+  SCHEDULE_CALL      // "Book a call" - Clicked to schedule
+}

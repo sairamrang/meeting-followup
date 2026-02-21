@@ -1,0 +1,82 @@
+[
+  {
+    "id": "library-1",
+    "type": "ABOUT_US",
+    "title": "Company History & Mission",
+    "content": "<h2>Our Story</h2><p>Founded in 2018, our company has grown from a small startup to a leading provider of business solutions. Our mission is to empower businesses with innovative technology that drives growth and efficiency.</p><h3>Our Values</h3><ul><li><strong>Innovation:</strong> We constantly push boundaries to deliver cutting-edge solutions</li><li><strong>Customer Success:</strong> Your success is our success</li><li><strong>Integrity:</strong> We build trust through transparency and honesty</li><li><strong>Collaboration:</strong> Together, we achieve more</li></ul>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T09:00:00Z",
+    "updatedAt": "2026-01-10T09:00:00Z"
+  },
+  {
+    "id": "library-2",
+    "type": "VALUE_PROP",
+    "title": "Why Choose Us",
+    "content": "<h2>What Sets Us Apart</h2><p>We deliver measurable results through our unique combination of technology, expertise, and customer-centric approach.</p><h3>Key Differentiators:</h3><ul><li><strong>Proven ROI:</strong> Average 300% ROI within 12 months</li><li><strong>Industry Expertise:</strong> 15+ years combined experience</li><li><strong>24/7 Support:</strong> Dedicated support team always available</li><li><strong>Scalable Solutions:</strong> Grow with confidence</li><li><strong>Security First:</strong> SOC 2 Type II certified</li></ul>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T09:15:00Z",
+    "updatedAt": "2026-01-10T09:15:00Z"
+  },
+  {
+    "id": "library-3",
+    "type": "CASE_STUDY",
+    "title": "Case Study: Enterprise Retailer Success",
+    "content": "<h2>Transforming Operations for a Fortune 500 Retailer</h2><p><strong>Challenge:</strong> Legacy systems causing operational inefficiencies and lost revenue opportunities.</p><p><strong>Solution:</strong> Implemented our integrated platform across 300+ locations nationwide.</p><p><strong>Results:</strong></p><ul><li>45% reduction in operational costs</li><li>300% increase in customer satisfaction scores</li><li>$12M annual savings</li><li>Implementation completed in 6 months</li></ul><blockquote>\"This solution transformed how we do business. The ROI exceeded all expectations.\" - COO, Major Retail Chain</blockquote>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T09:30:00Z",
+    "updatedAt": "2026-01-10T09:30:00Z"
+  },
+  {
+    "id": "library-4",
+    "type": "CASE_STUDY",
+    "title": "Case Study: Healthcare Innovation",
+    "content": "<h2>Improving Patient Care Through Technology</h2><p><strong>Challenge:</strong> Healthcare provider needed to streamline patient management and reduce wait times.</p><p><strong>Solution:</strong> Deployed our integrated patient management system across 50 clinics.</p><p><strong>Results:</strong></p><ul><li>60% reduction in patient wait times</li><li>95% patient satisfaction rate</li><li>40% increase in appointment capacity</li><li>HIPAA-compliant security</li></ul><blockquote>\"Patient care has improved dramatically. Our staff can focus on what matters most.\" - Medical Director</blockquote>",
+    "sortOrder": 2,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T09:45:00Z",
+    "updatedAt": "2026-01-10T09:45:00Z"
+  },
+  {
+    "id": "library-5",
+    "type": "TEAM_BIO",
+    "title": "Sarah Johnson - CEO & Founder",
+    "content": "<h2>Sarah Johnson</h2><h3>CEO & Founder</h3><p>Sarah brings 20+ years of experience in enterprise software and business transformation. Prior to founding our company, she was VP of Product at a Fortune 100 technology company.</p><p><strong>Education:</strong> MBA from Stanford, BS in Computer Science from MIT</p><p><strong>Expertise:</strong> Product Strategy, Enterprise Sales, Business Development</p><p>Sarah is passionate about using technology to solve real business problems and has been featured in Forbes, TechCrunch, and The Wall Street Journal.</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T10:00:00Z",
+    "updatedAt": "2026-01-10T10:00:00Z"
+  },
+  {
+    "id": "library-6",
+    "type": "TEAM_BIO",
+    "title": "Mark Davis - CTO",
+    "content": "<h2>Mark Davis</h2><h3>Chief Technology Officer</h3><p>Mark is a technology visionary with 15+ years building scalable enterprise systems. He previously led engineering teams at Google and Amazon.</p><p><strong>Education:</strong> MS in Computer Science from Carnegie Mellon</p><p><strong>Expertise:</strong> Cloud Architecture, AI/ML, Distributed Systems</p><p>Mark holds 12 patents in cloud computing and has spoken at numerous industry conferences including AWS re:Invent and Google Cloud Next.</p>",
+    "sortOrder": 2,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T10:15:00Z",
+    "updatedAt": "2026-01-10T10:15:00Z"
+  },
+  {
+    "id": "library-7",
+    "type": "PRODUCT",
+    "title": "Platform Overview",
+    "content": "<h2>Our Platform</h2><p>An all-in-one solution designed to streamline operations, enhance collaboration, and drive business growth.</p><h3>Core Features:</h3><ul><li><strong>Unified Dashboard:</strong> Real-time visibility into all operations</li><li><strong>Workflow Automation:</strong> Eliminate manual tasks</li><li><strong>Advanced Analytics:</strong> Data-driven decision making</li><li><strong>Integration Hub:</strong> Connect all your tools seamlessly</li><li><strong>Mobile Apps:</strong> Work from anywhere</li></ul><h3>Technical Specifications:</h3><ul><li>99.99% uptime SLA</li><li>Enterprise-grade security (SOC 2 Type II)</li><li>API-first architecture</li><li>Multi-region deployment</li><li>24/7 monitoring and support</li></ul>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T10:30:00Z",
+    "updatedAt": "2026-01-10T10:30:00Z"
+  },
+  {
+    "id": "library-8",
+    "type": "PRICING",
+    "title": "Pricing Plans",
+    "content": "<h2>Flexible Pricing for Every Business</h2><h3>Starter Plan</h3><ul><li>$299/month</li><li>Up to 10 users</li><li>Core features</li><li>Email support</li><li>30-day free trial</li></ul><h3>Professional Plan</h3><ul><li>$899/month</li><li>Up to 50 users</li><li>All core features + advanced analytics</li><li>Priority support</li><li>Custom integrations</li><li>Dedicated account manager</li></ul><h3>Enterprise Plan</h3><ul><li>Custom pricing</li><li>Unlimited users</li><li>Full feature access</li><li>24/7 premium support</li><li>Custom development</li><li>SLA guarantees</li><li>White-glove onboarding</li></ul><p><strong>All plans include:</strong> Free training, regular product updates, and data migration assistance.</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-10T10:45:00Z",
+    "updatedAt": "2026-01-10T10:45:00Z"
+  }
+]

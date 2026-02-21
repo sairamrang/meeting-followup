@@ -1,0 +1,409 @@
+# Feature Specification Metadata Schema
+# Version: 1.0
+# Last Updated: 2025-01-17
+
+# This file defines the schema for spec.yaml metadata files in the modular specification format.
+# Each feature directory (features/{feature-name}/) should contain:
+# - spec.yaml (this schema) - Metadata and coordination
+# - spec-functional.md - Functional requirements
+# - spec-technical.md - Technical requirements (optional initially)
+
+---
+
+# SCHEMA DEFINITION
+
+feature:
+  # Unique identifier for the feature (matches directory name)
+  # Format: XX-feature-name (XX = sequence number, 01-99)
+  # Example: "04-recurring-payments"
+  id: string # REQUIRED
+
+  # Human-readable feature name
+  # Example: "Recurring Payments"
+  name: string # REQUIRED
+
+  # Semantic version of the specification
+  # Format: MAJOR.MINOR
+  # Increment MINOR for enhancements, MAJOR for breaking changes
+  version: string # REQUIRED (default: "1.0")
+
+  # Current status of the feature specification
+  # Values:
+  # - "Functional Complete" - Functional requirements done, technical pending
+  # - "Ready for Planning" - Both functional and technical complete
+  # - "Approved" - Stakeholder approval received
+  # - "In Development" - Implementation started
+  # - "In Review" - Code review in progress
+  # - "Completed" - Feature shipped to production
+  # - "Archived" - No longer active
+  status: enum # REQUIRED
+
+  # Date specification was created
+  # Format: YYYY-MM-DD
+  created: string # REQUIRED
+
+  # Date specification was last updated
+  # Format: YYYY-MM-DD
+  # Update whenever functional or technical specs change
+  last_updated: string # REQUIRED
+
+  # Team or individual responsible for the feature
+  # Example: "Payments Team" or "Jane Smith"
+  owner: string # OPTIONAL
+
+  # Link to parent epic or initiative
+  # Example: "EPIC-123: Digital Payments Platform"
+  epic: string # OPTIONAL
+
+sections:
+  functional:
+    # Relative path to functional requirements file
+    # Standard: "spec-functional.md"
+    file: string # REQUIRED (default: "spec-functional.md")
+
+    # Status of functional requirements section
+    # Values:
+    # - "complete" - All functional requirements documented
+    # - "partial" - Some requirements documented, others TBD
+    # - "not_started" - Placeholder only
+    status: enum # REQUIRED
+
+    # Version of functional requirements
+    # Format: MAJOR.MINOR
+    # Increment when functional requirements change
+    version: string # REQUIRED (default: "1.0")
+
+    # Date functional requirements last updated
+    # Format: YYYY-MM-DD
+    last_updated: string # REQUIRED
+
+  technical:
+    # Relative path to technical requirements file
+    # Standard: "spec-technical.md"
+    file: string # REQUIRED (default: "spec-technical.md")
+
+    # Status of technical requirements section
+    # Values:
+    # - "complete" - All technical requirements documented
+    # - "partial" - Some requirements documented, others TBD
+    # - "not_started" - Not yet created (functional-only spec)
+    status: enum # REQUIRED
+
+    # Version of technical requirements
+    # Format: MAJOR.MINOR
+    # Increment when technical requirements change
+    # Use "0.0" when status is "not_started"
+    version: string # REQUIRED (default: "0.0" when not started)
+
+    # Date technical requirements last updated
+    # Format: YYYY-MM-DD
+    # Use creation date when not started
+    last_updated: string # REQUIRED
+
+quality:
+  # Overall specification quality score (0.0-10.0)
+  # Calculated as average of functional_score and technical_score
+  # If technical not started, same as functional_score
+  overall_score: float # REQUIRED (range: 0.0-10.0)
+
+  # Functional requirements quality score (0.0-10.0)
+  # Based on: clarity, completeness, UUX components, acceptance criteria
+  functional_score: float # REQUIRED (range: 0.0-10.0)
+
+  # Technical requirements quality score (0.0-10.0)
+  # Based on: NFRs, security, testing, error handling
+  # Use 0.0 when technical section not started
+  technical_score: float # REQUIRED (range: 0.0-10.0)
+
+  completeness:
+    # Are functional requirements complete?
+    functional: boolean # REQUIRED
+
+    # Are technical requirements complete?
+    # false when status is "not_started" or "partial"
+    technical: boolean # REQUIRED
+
+    # Are acceptance criteria defined?
+    # Should be in functional requirements
+    acceptance_criteria: boolean # REQUIRED
+
+    # Are test requirements defined?
+    # Should be in technical requirements
+    # false when technical not started
+    test_requirements: boolean # REQUIRED
+
+# Dependencies on other features (optional)
+# List feature IDs that must be implemented before this one
+# Example: ["01-user-authentication", "02-payment-gateway"]
+dependencies: # OPTIONAL
+  - string # Feature IDs
+
+# Tags for categorization and filtering (optional)
+# Example: ["payment", "high-priority", "api", "mobile"]
+tags: # OPTIONAL
+  - string # Tags
+
+---
+
+# VALIDATION RULES
+
+# 1. Feature ID Validation
+#    - Must match pattern: ^\d{2}-[a-z0-9-]+$
+#    - Must match directory name
+#    - Must be unique across project
+
+# 2. Version Validation
+#    - Must match pattern: ^\d+\.\d+$
+#    - technical.version must be "0.0" when status is "not_started"
+
+# 3. Date Validation
+#    - Must match pattern: ^\d{4}-\d{2}-\d{2}$
+#    - last_updated must be >= created
+#    - Section last_updated must be <= feature.last_updated
+
+# 4. Status Validation
+#    - feature.status must be one of defined enum values
+#    - sections.technical.status must be "not_started" initially
+#    - sections.technical.status must be "complete" before feature.status = "Ready for Planning"
+
+# 5. Quality Score Validation
+#    - All scores must be in range [0.0, 10.0]
+#    - overall_score should be calculated as:
+#      - (functional_score + technical_score) / 2 when technical complete
+#      - functional_score when technical not started
+#    - technical_score must be 0.0 when technical.status = "not_started"
+
+# 6. Completeness Validation
+#    - completeness.technical must be false when sections.technical.status != "complete"
+#    - completeness.test_requirements must be false when technical not started
+
+# 7. File Path Validation
+#    - sections.functional.file must exist
+#    - sections.technical.file must exist only when status != "not_started"
+
+# 8. Dependencies Validation
+#    - All dependency feature IDs must reference existing features
+#    - No circular dependencies allowed
+
+---
+
+# EXAMPLE 1: Functional-Only Specification (Initial Creation)
+
+feature:
+  id: "04-recurring-payments"
+  name: "Recurring Payments"
+  version: "1.0"
+  status: "Functional Complete"
+  created: "2025-01-17"
+  last_updated: "2025-01-17"
+  owner: "Payments Team"
+  epic: "EPIC-789: Digital Banking Platform"
+
+sections:
+  functional:
+    file: "spec-functional.md"
+    status: "complete"
+    version: "1.0"
+    last_updated: "2025-01-17"
+
+  technical:
+    file: "spec-technical.md"
+    status: "not_started"
+    version: "0.0"
+    last_updated: "2025-01-17"
+
+quality:
+  overall_score: 9.0
+  functional_score: 9.0
+  technical_score: 0.0
+  completeness:
+    functional: true
+    technical: false
+    acceptance_criteria: true
+    test_requirements: false
+
+dependencies:
+  - "01-user-authentication"
+  - "02-payment-gateway"
+
+tags:
+  - "payment"
+  - "high-priority"
+  - "api"
+
+---
+
+# EXAMPLE 2: Complete Specification (Both Functional and Technical)
+
+feature:
+  id: "04-recurring-payments"
+  name: "Recurring Payments"
+  version: "1.0"
+  status: "Ready for Planning"
+  created: "2025-01-17"
+  last_updated: "2025-01-18"
+  owner: "Payments Team"
+  epic: "EPIC-789: Digital Banking Platform"
+
+sections:
+  functional:
+    file: "spec-functional.md"
+    status: "complete"
+    version: "1.0"
+    last_updated: "2025-01-17"
+
+  technical:
+    file: "spec-technical.md"
+    status: "complete"
+    version: "1.0"
+    last_updated: "2025-01-18"
+
+quality:
+  overall_score: 8.7
+  functional_score: 9.0
+  technical_score: 8.5
+  completeness:
+    functional: true
+    technical: true
+    acceptance_criteria: true
+    test_requirements: true
+
+dependencies:
+  - "01-user-authentication"
+  - "02-payment-gateway"
+
+tags:
+  - "payment"
+  - "high-priority"
+  - "api"
+  - "pci-dss"
+
+---
+
+# EXAMPLE 3: Updated Specification (After Enhancement)
+
+feature:
+  id: "04-recurring-payments"
+  name: "Recurring Payments"
+  version: "1.1" # Incremented for enhancement
+  status: "Ready for Planning"
+  created: "2025-01-17"
+  last_updated: "2025-01-19" # Updated today
+
+sections:
+  functional:
+    file: "spec-functional.md"
+    status: "complete"
+    version: "1.1" # Enhanced with additional scenarios
+    last_updated: "2025-01-19"
+
+  technical:
+    file: "spec-technical.md"
+    status: "complete"
+    version: "1.0"
+    last_updated: "2025-01-18"
+
+quality:
+  overall_score: 9.2 # Improved after enhancement
+  functional_score: 9.5 # Improved
+  technical_score: 8.5 # Unchanged
+  completeness:
+    functional: true
+    technical: true
+    acceptance_criteria: true
+    test_requirements: true
+
+dependencies:
+  - "01-user-authentication"
+  - "02-payment-gateway"
+
+tags:
+  - "payment"
+  - "high-priority"
+  - "api"
+  - "pci-dss"
+  - "mobile" # Added new tag
+
+---
+
+# USAGE NOTES
+
+# 1. Creating Initial Specification (Functional Only)
+#    - Use /temn:temn-requirements {feature} in Mode 1 (two-phase)
+#    - Product Manager agent creates spec.yaml with technical.status = "not_started"
+#    - User decides whether to continue to technical phase
+
+# 2. Adding Technical Requirements
+#    - Use /temn:temn-requirements enhance {feature}
+#    - Product Manager agent detects functional-only status
+#    - Creates spec-technical.md and updates spec.yaml
+
+# 3. Enhancing Existing Specification
+#    - Edit spec-functional.md or spec-technical.md directly
+#    - Update version numbers (increment minor version)
+#    - Update last_updated dates
+#    - Update quality scores if significant changes
+#    - Run /temn:temn-requirements enhance {feature} for full re-evaluation
+
+# 4. Reading Specifications in Commands
+#    - All commands should use .claude/lib/spec-reading-pattern.md
+#    - Pattern handles both modular and legacy formats
+#    - Gracefully handles missing technical requirements
+
+# 5. Migrating from Legacy Format
+#    - Use /temn:migrate-specs {feature} to convert spec-{feature}.md
+#    - Tool analyzes content and splits into functional/technical
+#    - Generates spec.yaml with inferred metadata
+#    - Creates backup before migration
+
+---
+
+# STATUS ENUM VALUES
+
+feature.status:
+  - "Functional Complete" # Functional done, technical pending (initial state)
+  - "Ready for Planning" # Both functional and technical complete
+  - "Approved" # Stakeholder approval received
+  - "In Development" # Implementation started
+  - "In Review" # Code review in progress
+  - "Completed" # Feature shipped to production
+  - "Archived" # No longer active
+
+sections.*.status:
+  - "complete" # All requirements documented
+  - "partial" # Some requirements documented, others TBD
+  - "not_started" # Not yet created (technical initial state)
+
+---
+
+# QUALITY SCORING GUIDELINES
+
+# Functional Score (0.0-10.0)
+# - 9.0-10.0: Exceptional - Clear, complete, detailed AC, full UUX mapping
+# - 8.0-8.9: Strong - Clear requirements, good AC, most UUX components identified
+# - 7.0-7.9: Good - Requirements clear, basic AC, some UUX gaps
+# - 6.0-6.9: Acceptable - Requirements present, AC needs work, UUX incomplete
+# - Below 6.0: Needs improvement - Unclear, incomplete, missing AC
+
+# Technical Score (0.0-10.0)
+# - 9.0-10.0: Exceptional - Complete NFRs, security, compliance, testing strategy
+# - 8.0-8.9: Strong - Good NFRs, security covered, testing defined
+# - 7.0-7.9: Good - Basic NFRs, some security, testing outlined
+# - 6.0-6.9: Acceptable - Minimal NFRs, basic security, testing gaps
+# - Below 6.0: Needs improvement - Incomplete technical requirements
+# - 0.0: Not started - Technical section not yet created
+
+---
+
+# RELATED FILES
+
+# - .temn/core/lib/spec-reading-pattern.md - Pattern for reading specs in commands
+# - .claude/agents/temn/uux/uux-product-manager.md - Agent that creates specs
+# - .claude/commands/temn/temn-requirements.md - Orchestrator for two-phase workflow
+# - .claude/commands/temn/migrate-specs.md - Migration tool for legacy specs
+
+---
+
+**Version:** 1.0
+**Last Updated:** 2025-01-17
+**Maintained By:** Temenos UUX Engineering

@@ -1,0 +1,22 @@
+{
+  "entities": [
+    {
+      "id": "ENTITY-001",
+      "userId": "user-123",
+      "name": "Sample Entity",
+      "description": "A sample entity for development",
+      "createdDate": "2025-01-01T10:00:00.000Z",
+      "lastModifiedDate": "2025-01-15T14:30:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "ENTITY-002",
+      "userId": "user-123",
+      "name": "Another Entity",
+      "description": "Second sample entity",
+      "createdDate": "2025-01-05T09:00:00.000Z",
+      "lastModifiedDate": "2025-01-10T11:00:00.000Z",
+      "status": "completed"
+    }
+  ]
+}

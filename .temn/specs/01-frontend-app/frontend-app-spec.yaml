@@ -1,0 +1,62 @@
+# Specification Metadata
+# Generated: 2026-02-01
+
+metadata:
+  feature: frontend-app
+  version: "1.0"
+  status: draft
+  created: 2026-02-01
+  author: Product Manager Agent
+
+identity:
+  name: "Meeting Follow-Up Frontend Application"
+  epic: "Dynamic Post-Meeting Engagement Platform"
+  type: "web-app"
+  description: "React SPA enabling sales teams to create, publish, and track personalized follow-up pages after business meetings"
+
+scope:
+  p0_count: 8
+  p1_count: 7
+  p2_count: 6
+  user_stories: 5
+  business_rules: 6
+
+links:
+  prd:
+    file: ".temn/prds/meeting-follow-up-system-prd.md"
+  backend_spec:
+    file: ".temn/specs/01-meeting-follow-up-system/spec-technical.md"
+  project_context:
+    file: ".temn/project-context.md"
+
+tech_context:
+  backend_status: "complete"
+  api_resources:
+    - companies
+    - contacts
+    - followups
+    - files
+    - templates
+    - library
+    - analytics
+  api_endpoint_count: 45
+
+quality:
+  functional_score: 8.7
+  clarity: 9
+  completeness: 9
+  user_stories: 8
+  business_rules: 9
+  consistency: 8
+  scope: 9
+
+dependencies:
+  requires:
+    - "Clerk authentication (configured)"
+    - "Backend API (45+ endpoints ready)"
+    - "PostgreSQL database (schema deployed)"
+  blocked_by: []
+
+next_steps:
+  - "/temn:temn-tech-spec frontend-app - Add technical specification"
+  - "/temn:temn-plan frontend-app - Create development breakdown"

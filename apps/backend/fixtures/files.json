@@ -1,0 +1,112 @@
+[
+  {
+    "id": "file-1",
+    "followupId": "followup-1",
+    "filename": "Acme-Product-Roadmap-Q1-2026.pdf",
+    "fileSize": 2457600,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-1/acme-product-roadmap.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-1/acme-product-roadmap.pdf",
+    "description": "Our product roadmap highlighting features relevant to Acme's requirements",
+    "uploadedAt": "2026-01-27T16:15:00Z"
+  },
+  {
+    "id": "file-2",
+    "followupId": "followup-1",
+    "filename": "ROI-Analysis-Acme.xlsx",
+    "fileSize": 1536000,
+    "mimeType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "storagePath": "followup-files/followup-1/roi-analysis-acme.xlsx",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-1/roi-analysis-acme.xlsx",
+    "description": "Custom ROI analysis based on Acme's current costs and projected savings",
+    "uploadedAt": "2026-01-27T16:30:00Z"
+  },
+  {
+    "id": "file-3",
+    "followupId": "followup-1",
+    "filename": "Integration-Architecture.pdf",
+    "fileSize": 3145728,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-1/integration-architecture.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-1/integration-architecture.pdf",
+    "description": "Technical architecture diagram showing integration with Acme's existing ERP system",
+    "uploadedAt": "2026-01-27T17:00:00Z"
+  },
+  {
+    "id": "file-4",
+    "followupId": "followup-2",
+    "filename": "Partnership-Proposal-TechVentures.pdf",
+    "fileSize": 2097152,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-2/partnership-proposal.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-2/partnership-proposal.pdf",
+    "description": "Detailed partnership proposal outlining integration approach and go-to-market strategy",
+    "uploadedAt": "2026-01-26T19:00:00Z"
+  },
+  {
+    "id": "file-5",
+    "followupId": "followup-2",
+    "filename": "Technical-Integration-Spec.pdf",
+    "fileSize": 1843200,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-2/technical-integration-spec.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-2/technical-integration-spec.pdf",
+    "description": "API integration specifications for connecting our platforms",
+    "uploadedAt": "2026-01-26T19:15:00Z"
+  },
+  {
+    "id": "file-6",
+    "followupId": "followup-3",
+    "filename": "Healthcare-Compliance-Guide.pdf",
+    "fileSize": 4194304,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-3/healthcare-compliance.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-3/healthcare-compliance.pdf",
+    "description": "HIPAA compliance documentation and security certifications",
+    "uploadedAt": "2026-01-29T15:00:00Z"
+  },
+  {
+    "id": "file-7",
+    "followupId": "followup-3",
+    "filename": "Demo-Recording-GlobalHealth.mp4",
+    "fileSize": 52428800,
+    "mimeType": "video/mp4",
+    "storagePath": "followup-files/followup-3/demo-recording.mp4",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-3/demo-recording.mp4",
+    "description": "Recording of the product demonstration (45 minutes)",
+    "uploadedAt": "2026-01-29T16:00:00Z"
+  },
+  {
+    "id": "file-8",
+    "followupId": "followup-5",
+    "filename": "SOC2-Type-II-Report.pdf",
+    "fileSize": 5242880,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-5/soc2-report.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-5/soc2-report.pdf",
+    "description": "SOC 2 Type II audit report (redacted version for prospects)",
+    "uploadedAt": "2026-01-27T15:30:00Z"
+  },
+  {
+    "id": "file-9",
+    "followupId": "followup-5",
+    "filename": "API-Documentation-v2.pdf",
+    "fileSize": 3670016,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-5/api-documentation.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-5/api-documentation.pdf",
+    "description": "Complete API documentation with code examples",
+    "uploadedAt": "2026-01-27T15:45:00Z"
+  },
+  {
+    "id": "file-10",
+    "followupId": "followup-5",
+    "filename": "Security-Architecture-Whitepaper.pdf",
+    "fileSize": 2621440,
+    "mimeType": "application/pdf",
+    "storagePath": "followup-files/followup-5/security-whitepaper.pdf",
+    "storageUrl": "https://storage.supabase.co/followup-files/followup-5/security-whitepaper.pdf",
+    "description": "Detailed security architecture and data protection measures",
+    "uploadedAt": "2026-01-27T16:00:00Z"
+  }
+]

@@ -1,0 +1,12 @@
+// Routes Index - Export all route modules
+export { default as companyRoutes } from './company.routes';
+export { default as contactRoutes } from './contact.routes';
+export { default as followupRoutes } from './followup.routes';
+export { default as libraryRoutes } from './library.routes';
+export { default as companyContentRoutes } from './company-content.routes';
+export { default as templateRoutes } from './template.routes';
+export { default as fileRoutes } from './file.routes';
+export { default as analyticsRoutes } from './analytics.routes';
+export { default as aiRoutes } from './ai.routes';
+export { default as confirmationRoutes } from './confirmation.routes';
+export { default as notificationRoutes } from './notification.routes';

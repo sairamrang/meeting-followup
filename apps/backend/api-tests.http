@@ -1,0 +1,386 @@
+# Meeting Follow-Up API Tests
+# Use REST Client extension in VS Code or copy to Postman
+
+@baseUrl = http://localhost:3001
+@token = YOUR_CLERK_JWT_TOKEN_HERE
+@testUserId = test-user-123
+
+### Health Check (No Auth)
+GET {{baseUrl}}/health
+
+### ============================================
+### COMPANIES
+### ============================================
+
+### Create Company (Development Mode)
+# REMOVE x-user-id header in production and use x-user-id: {{testUserId}}
+POST {{baseUrl}}/api/companies
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "name": "Acme Corporation",
+  "website": "https://acme.com",
+  "industry": "Technology",
+  "description": "Leading provider of innovative solutions"
+}
+
+### Create Company (Production Mode with JWT)
+# POST {{baseUrl}}/api/companies
+# x-user-id: {{testUserId}}
+# Content-Type: application/json
+#
+# {
+#   "name": "Acme Corporation",
+#   "website": "https://acme.com",
+#   "industry": "Technology"
+# }
+
+### Get Company by ID
+GET {{baseUrl}}/api/companies/YOUR_COMPANY_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Companies
+GET {{baseUrl}}/api/companies?page=1&pageSize=20&search=acme
+x-user-id: {{testUserId}}
+
+### Update Company
+PUT {{baseUrl}}/api/companies/YOUR_COMPANY_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "description": "Updated description"
+}
+
+### Delete Company
+DELETE {{baseUrl}}/api/companies/YOUR_COMPANY_ID_HERE
+x-user-id: {{testUserId}}
+
+### Get Company Stats
+GET {{baseUrl}}/api/companies/YOUR_COMPANY_ID_HERE/stats
+x-user-id: {{testUserId}}
+
+### ============================================
+### CONTACTS
+### ============================================
+
+### Create Contact
+POST {{baseUrl}}/api/contacts
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "companyId": "YOUR_COMPANY_ID_HERE",
+  "name": "John Doe",
+  "title": "CEO",
+  "email": "john@acme.com",
+  "phone": "+1-555-0100",
+  "linkedinUrl": "https://linkedin.com/in/johndoe"
+}
+
+### Get Contact by ID
+GET {{baseUrl}}/api/contacts/YOUR_CONTACT_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Contacts for Company
+GET {{baseUrl}}/api/contacts/company/YOUR_COMPANY_ID_HERE
+x-user-id: {{testUserId}}
+
+### Update Contact
+PUT {{baseUrl}}/api/contacts/YOUR_CONTACT_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "title": "Chief Executive Officer"
+}
+
+### Delete Contact
+DELETE {{baseUrl}}/api/contacts/YOUR_CONTACT_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### FOLLOW-UPS
+### ============================================
+
+### Create Follow-up (Draft)
+POST {{baseUrl}}/api/followups
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "companyId": "YOUR_COMPANY_ID_HERE",
+  "title": "Q4 Partnership Discussion",
+  "meetingDate": "2024-01-15T14:00:00Z",
+  "meetingType": "PARTNERSHIP",
+  "meetingRecap": "<h2>Meeting Summary</h2><p>Discussed partnership opportunities...</p>",
+  "nextSteps": [
+    {
+      "action": "Send proposal",
+      "owner": "John Doe",
+      "deadline": "2024-01-22",
+      "completed": false
+    }
+  ],
+  "attendeeIds": ["CONTACT_ID_1", "CONTACT_ID_2"]
+}
+
+### Get Follow-up by ID
+GET {{baseUrl}}/api/followups/YOUR_FOLLOWUP_ID_HERE?include=true
+x-user-id: {{testUserId}}
+
+### List Follow-ups
+GET {{baseUrl}}/api/followups?page=1&pageSize=20&status=DRAFT
+x-user-id: {{testUserId}}
+
+### Update Follow-up (Draft only)
+PUT {{baseUrl}}/api/followups/YOUR_FOLLOWUP_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "meetingRecap": "<p>Updated recap...</p>"
+}
+
+### Publish Follow-up
+POST {{baseUrl}}/api/followups/YOUR_FOLLOWUP_ID_HERE/publish
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "slug": "acme-q4-partnership",
+  "attendeeIds": ["CONTACT_ID_1"]
+}
+
+### Unpublish Follow-up
+POST {{baseUrl}}/api/followups/YOUR_FOLLOWUP_ID_HERE/unpublish
+x-user-id: {{testUserId}}
+
+### Get Published Follow-up (Public - No Auth)
+GET {{baseUrl}}/api/followups/public/acme-q4-partnership
+
+### Delete Follow-up
+DELETE {{baseUrl}}/api/followups/YOUR_FOLLOWUP_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### LIBRARY (Global Content)
+### ============================================
+
+### Create Library Item
+POST {{baseUrl}}/api/library
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "title": "About Our Company",
+  "type": "ABOUT_US",
+  "content": "<h2>Company Overview</h2><p>We are...</p>",
+  "sortOrder": 0
+}
+
+### Get Library Item
+GET {{baseUrl}}/api/library/YOUR_LIBRARY_ID_HERE
+x-user-id: {{testUserId}}
+
+### List All Library Items (Grouped)
+GET {{baseUrl}}/api/library
+x-user-id: {{testUserId}}
+
+### List Library by Type
+GET {{baseUrl}}/api/library?type=ABOUT_US
+x-user-id: {{testUserId}}
+
+### Update Library Item
+PUT {{baseUrl}}/api/library/YOUR_LIBRARY_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "content": "<h2>Updated Content</h2>"
+}
+
+### Delete Library Item
+DELETE {{baseUrl}}/api/library/YOUR_LIBRARY_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### COMPANY CONTENT (Prospect-Specific)
+### ============================================
+
+### Create Company Content
+POST {{baseUrl}}/api/company-content
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "companyId": "YOUR_COMPANY_ID_HERE",
+  "title": "Acme's History",
+  "type": "HISTORY",
+  "content": "<p>Founded in 1990...</p>",
+  "sortOrder": 0
+}
+
+### Get Company Content
+GET {{baseUrl}}/api/company-content/YOUR_CONTENT_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Company Content (Grouped)
+GET {{baseUrl}}/api/company-content/company/YOUR_COMPANY_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Company Content by Type
+GET {{baseUrl}}/api/company-content/company/YOUR_COMPANY_ID_HERE/type?type=HISTORY
+x-user-id: {{testUserId}}
+
+### Update Company Content
+PUT {{baseUrl}}/api/company-content/YOUR_CONTENT_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "content": "<p>Updated history...</p>"
+}
+
+### Delete Company Content
+DELETE {{baseUrl}}/api/company-content/YOUR_CONTENT_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### TEMPLATES
+### ============================================
+
+### Create Template
+POST {{baseUrl}}/api/templates
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "name": "Standard Follow-up",
+  "slug": "standard-followup",
+  "description": "Default template for follow-ups",
+  "structure": {
+    "sections": [
+      {
+        "id": "meeting-recap",
+        "title": "Meeting Recap",
+        "type": "rich-text",
+        "required": true
+      }
+    ]
+  }
+}
+
+### Get Template by ID
+GET {{baseUrl}}/api/templates/YOUR_TEMPLATE_ID_HERE
+x-user-id: {{testUserId}}
+
+### Get Template by Slug
+GET {{baseUrl}}/api/templates/slug/standard-followup
+x-user-id: {{testUserId}}
+
+### List All Templates
+GET {{baseUrl}}/api/templates
+x-user-id: {{testUserId}}
+
+### Update Template
+PUT {{baseUrl}}/api/templates/YOUR_TEMPLATE_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "description": "Updated description"
+}
+
+### Delete Template
+DELETE {{baseUrl}}/api/templates/YOUR_TEMPLATE_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### FILES
+### ============================================
+
+### Create File Record
+POST {{baseUrl}}/api/files
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "followupId": "YOUR_FOLLOWUP_ID_HERE",
+  "fileName": "presentation.pdf",
+  "originalName": "Q4_Presentation.pdf",
+  "mimeType": "application/pdf",
+  "fileSize": 1048576,
+  "storagePath": "uploads/abc123/presentation.pdf",
+  "displayName": "Q4 Partnership Presentation"
+}
+
+### Get File
+GET {{baseUrl}}/api/files/YOUR_FILE_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Files for Follow-up
+GET {{baseUrl}}/api/files/followup/YOUR_FOLLOWUP_ID_HERE
+x-user-id: {{testUserId}}
+
+### List Files for Published Follow-up (Public)
+GET {{baseUrl}}/api/files/public/acme-q4-partnership/files
+
+### Update File
+PUT {{baseUrl}}/api/files/YOUR_FILE_ID_HERE
+x-user-id: {{testUserId}}
+Content-Type: application/json
+
+{
+  "displayName": "Updated Name"
+}
+
+### Delete File
+DELETE {{baseUrl}}/api/files/YOUR_FILE_ID_HERE
+x-user-id: {{testUserId}}
+
+### ============================================
+### ANALYTICS
+### ============================================
+
+### Track Event (Public - No Auth)
+POST {{baseUrl}}/api/analytics/events
+Content-Type: application/json
+
+{
+  "followupId": "YOUR_FOLLOWUP_ID_HERE",
+  "sessionId": "SESSION_UUID_HERE",
+  "eventType": "PAGE_VIEW",
+  "deviceType": "DESKTOP",
+  "browser": "Chrome",
+  "locationCity": "San Francisco",
+  "locationCountry": "USA"
+}
+
+### Start Session (Public - No Auth)
+POST {{baseUrl}}/api/analytics/sessions/start
+Content-Type: application/json
+
+{
+  "followupId": "YOUR_FOLLOWUP_ID_HERE",
+  "deviceType": "DESKTOP",
+  "browser": "Chrome"
+}
+
+### End Session (Public - No Auth)
+POST {{baseUrl}}/api/analytics/sessions/end
+Content-Type: application/json
+
+{
+  "sessionId": "SESSION_UUID_HERE"
+}
+
+### Get Follow-up Analytics
+GET {{baseUrl}}/api/analytics/followups/YOUR_FOLLOWUP_ID_HERE?timeRange=30d
+x-user-id: {{testUserId}}
+
+### Get Analytics Summary
+GET {{baseUrl}}/api/analytics/summary?timeRange=30d
+x-user-id: {{testUserId}}

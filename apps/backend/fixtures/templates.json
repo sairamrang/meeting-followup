@@ -1,0 +1,167 @@
+[
+  {
+    "id": "template-1",
+    "name": "Sales Discovery Call",
+    "slug": "sales-discovery",
+    "description": "Template for initial discovery calls with prospects",
+    "structure": {
+      "sections": [
+        {
+          "type": "recap",
+          "title": "Meeting Summary",
+          "content": "<p>Thank you for taking the time to meet with us today. Here's a summary of our discussion:</p>"
+        },
+        {
+          "type": "nextSteps",
+          "title": "Next Steps",
+          "content": "<p>We've outlined the following action items to move forward:</p>"
+        },
+        {
+          "type": "aboutUs",
+          "title": "About Our Company",
+          "libraryRefs": ["library-1"]
+        },
+        {
+          "type": "caseStudy",
+          "title": "Success Stories",
+          "libraryRefs": ["library-3"]
+        },
+        {
+          "type": "pricing",
+          "title": "Pricing Information",
+          "libraryRefs": ["library-8"]
+        }
+      ]
+    },
+    "createdAt": "2026-01-10T08:00:00Z",
+    "updatedAt": "2026-01-10T08:00:00Z"
+  },
+  {
+    "id": "template-2",
+    "name": "Partnership Meeting",
+    "slug": "partnership-meeting",
+    "description": "Template for partnership and collaboration discussions",
+    "structure": {
+      "sections": [
+        {
+          "type": "recap",
+          "title": "Meeting Recap",
+          "content": "<p>Great discussion on potential partnership opportunities. Key points covered:</p>"
+        },
+        {
+          "type": "nextSteps",
+          "title": "Action Items",
+          "content": "<p>To explore this partnership further:</p>"
+        },
+        {
+          "type": "aboutUs",
+          "title": "Our Company",
+          "libraryRefs": ["library-1", "library-2"]
+        },
+        {
+          "type": "teamBios",
+          "title": "Meet Our Team",
+          "libraryRefs": ["library-5", "library-6"]
+        }
+      ]
+    },
+    "createdAt": "2026-01-10T08:15:00Z",
+    "updatedAt": "2026-01-10T08:15:00Z"
+  },
+  {
+    "id": "template-3",
+    "name": "Product Demo",
+    "slug": "product-demo",
+    "description": "Template for product demonstration follow-ups",
+    "structure": {
+      "sections": [
+        {
+          "type": "recap",
+          "title": "Demo Highlights",
+          "content": "<p>Thank you for attending our product demonstration. Here are the key features we covered:</p>"
+        },
+        {
+          "type": "custom",
+          "title": "Demo Recording & Resources",
+          "content": "<p>Access the demo recording and additional resources:</p>"
+        },
+        {
+          "type": "nextSteps",
+          "title": "Next Steps",
+          "content": "<p>Here's what we recommend for next steps:</p>"
+        },
+        {
+          "type": "custom",
+          "title": "Product Information",
+          "libraryRefs": ["library-7"]
+        },
+        {
+          "type": "caseStudy",
+          "title": "Customer Success Stories",
+          "libraryRefs": ["library-3", "library-4"]
+        }
+      ]
+    },
+    "createdAt": "2026-01-10T08:30:00Z",
+    "updatedAt": "2026-01-10T08:30:00Z"
+  },
+  {
+    "id": "template-4",
+    "name": "Technical Discussion",
+    "slug": "technical-discussion",
+    "description": "Template for technical architecture and integration meetings",
+    "structure": {
+      "sections": [
+        {
+          "type": "recap",
+          "title": "Technical Overview",
+          "content": "<p>Summary of technical requirements and architecture discussion:</p>"
+        },
+        {
+          "type": "custom",
+          "title": "Technical Specifications",
+          "libraryRefs": ["library-7"]
+        },
+        {
+          "type": "nextSteps",
+          "title": "Technical Next Steps",
+          "content": "<p>Action items for technical evaluation:</p>"
+        },
+        {
+          "type": "teamBios",
+          "title": "Technical Team",
+          "libraryRefs": ["library-6"]
+        }
+      ]
+    },
+    "createdAt": "2026-01-10T08:45:00Z",
+    "updatedAt": "2026-01-10T08:45:00Z"
+  },
+  {
+    "id": "template-5",
+    "name": "Follow-Up Call",
+    "slug": "follow-up-call",
+    "description": "Template for general follow-up meetings",
+    "structure": {
+      "sections": [
+        {
+          "type": "recap",
+          "title": "Meeting Summary",
+          "content": "<p>Thank you for the follow-up discussion. Here's what we covered:</p>"
+        },
+        {
+          "type": "nextSteps",
+          "title": "Action Items",
+          "content": "<p>Next steps to keep momentum:</p>"
+        },
+        {
+          "type": "custom",
+          "title": "Resources",
+          "content": "<p>Additional resources that may be helpful:</p>"
+        }
+      ]
+    },
+    "createdAt": "2026-01-10T09:00:00Z",
+    "updatedAt": "2026-01-10T09:00:00Z"
+  }
+]

@@ -1,0 +1,207 @@
+[
+  {
+    "id": "followup-1",
+    "userId": "user_demo_123",
+    "companyId": "company-1",
+    "status": "PUBLISHED",
+    "slug": "acme-discovery-jan-2026",
+    "title": "Discovery Call - Acme Corporation",
+    "meetingDate": "2026-01-27",
+    "meetingType": "DISCOVERY",
+    "meetingLocation": "Zoom",
+    "meetingRecap": "<h2>Great initial conversation!</h2><p>Had an excellent discovery call with Sarah Mitchell (VP Operations) and David Chen (CTO) from Acme. They're experiencing significant pain points with their current supply chain software:</p><ul><li>Legacy systems causing integration headaches</li><li>Lack of real-time visibility into operations</li><li>Manual processes eating up team time</li><li>Need for better analytics and reporting</li></ul><p><strong>Key Takeaways:</strong></p><p>Acme is ready to make a change and has budget allocated ($500K-$1M). They're impressed with our platform's ability to integrate with their existing ERP system. David mentioned they're evaluating 2 other vendors but we seem to be the frontrunner.</p><p>Sarah is our champion internally and will help coordinate a broader team demo next week.</p>",
+    "meetingNotesUrl": "https://docs.google.com/document/d/abc123",
+    "nextSteps": [
+      {
+        "action": "Schedule technical demo with engineering team",
+        "owner": "David Chen",
+        "deadline": "2026-02-05",
+        "completed": false
+      },
+      {
+        "action": "Send product documentation and API specs",
+        "owner": "Our Team",
+        "deadline": "2026-01-30",
+        "completed": true
+      },
+      {
+        "action": "Prepare custom ROI analysis",
+        "owner": "Our Team",
+        "deadline": "2026-02-03",
+        "completed": false
+      }
+    ],
+    "contentRefs": {
+      "library": ["library-1", "library-2", "library-3", "library-7", "library-8"],
+      "companyContent": ["company-content-1", "company-content-2"]
+    },
+    "createdAt": "2026-01-27T16:00:00Z",
+    "updatedAt": "2026-01-28T10:00:00Z",
+    "publishedAt": "2026-01-27T17:30:00Z"
+  },
+  {
+    "id": "followup-2",
+    "userId": "user_demo_123",
+    "companyId": "company-2",
+    "status": "PUBLISHED",
+    "slug": "techventures-partnership-jan-2026",
+    "title": "Partnership Discussion - TechVentures",
+    "meetingDate": "2026-01-26",
+    "meetingType": "PARTNERSHIP",
+    "meetingLocation": "TechVentures HQ, San Francisco",
+    "meetingRecap": "<h2>Exciting Partnership Opportunity</h2><p>Met with Emily Rodriguez (CEO) and Michael Thompson (Head of Product) to explore integration partnership. TechVentures' AI analytics platform could complement our offering perfectly.</p><p><strong>Potential Partnership Models Discussed:</strong></p><ol><li><strong>Technology Integration:</strong> Build native integration between our platforms</li><li><strong>Co-Marketing:</strong> Joint webinars and case studies</li><li><strong>Channel Partnership:</strong> Mutual referrals and revenue share</li></ol><p>Emily is very excited about option #1 - a deep technical integration. Their engineering team has bandwidth starting Q2 2026.</p><p><strong>Business Potential:</strong></p><ul><li>Access to their 150+ customer base</li><li>Differentiated offering in market</li><li>Potential $2M+ in additional revenue</li></ul>",
+    "nextSteps": [
+      {
+        "action": "Draft partnership agreement outline",
+        "owner": "Legal Teams",
+        "deadline": "2026-02-15",
+        "completed": false
+      },
+      {
+        "action": "Technical teams to discuss integration architecture",
+        "owner": "Both Engineering Teams",
+        "deadline": "2026-02-10",
+        "completed": false
+      },
+      {
+        "action": "Create joint go-to-market plan",
+        "owner": "Marketing Teams",
+        "deadline": "2026-02-20",
+        "completed": false
+      }
+    ],
+    "contentRefs": {
+      "library": ["library-1", "library-5", "library-6", "library-7"],
+      "companyContent": ["company-content-4", "company-content-5"]
+    },
+    "createdAt": "2026-01-26T18:00:00Z",
+    "updatedAt": "2026-01-27T09:00:00Z",
+    "publishedAt": "2026-01-26T20:00:00Z"
+  },
+  {
+    "id": "followup-3",
+    "userId": "user_demo_123",
+    "companyId": "company-3",
+    "status": "DRAFT",
+    "slug": null,
+    "title": "Product Demo - GlobalHealth Solutions",
+    "meetingDate": "2026-01-29",
+    "meetingType": "DEMO",
+    "meetingLocation": "Zoom",
+    "meetingRecap": "<h2>Product Demonstration</h2><p>Conducted comprehensive platform demo for Dr. Lisa Patel (CMO) and James Wilson (VP Engineering). Focus on healthcare-specific features:</p><ul><li>HIPAA-compliant data handling</li><li>Patient data integration</li><li>Automated reporting for compliance</li><li>Real-time clinic operations dashboard</li></ul><p>Dr. Patel was particularly impressed with the compliance features. James asked detailed technical questions about our security architecture and API capabilities.</p><p><strong>Feedback:</strong> Very positive. They need to evaluate one more vendor before making decision.</p>",
+    "meetingNotesUrl": null,
+    "nextSteps": [
+      {
+        "action": "Provide HIPAA compliance documentation",
+        "owner": "Our Team",
+        "deadline": "2026-02-01",
+        "completed": false
+      },
+      {
+        "action": "Schedule security architecture review",
+        "owner": "James Wilson",
+        "deadline": "2026-02-08",
+        "completed": false
+      },
+      {
+        "action": "Prepare healthcare-specific case studies",
+        "owner": "Our Team",
+        "deadline": "2026-02-05",
+        "completed": false
+      }
+    ],
+    "contentRefs": {
+      "library": ["library-1", "library-4", "library-7"],
+      "companyContent": ["company-content-6", "company-content-7"]
+    },
+    "createdAt": "2026-01-29T14:00:00Z",
+    "updatedAt": "2026-01-29T16:30:00Z",
+    "publishedAt": null
+  },
+  {
+    "id": "followup-4",
+    "userId": "user_demo_123",
+    "companyId": "company-4",
+    "status": "DRAFT",
+    "slug": null,
+    "title": "Initial Meeting - RetailMax Group",
+    "meetingDate": "2026-01-28",
+    "meetingType": "SALES",
+    "meetingLocation": "RetailMax Headquarters, Chicago",
+    "meetingRecap": "<h2>First Meeting with RetailMax</h2><p>Met Amanda Foster (Director of Digital Strategy) and Robert Kim (CIO) at their Chicago HQ. RetailMax is in the middle of a major digital transformation initiative.</p><p><strong>Their Situation:</strong></p><ul><li>500+ stores nationwide</li><li>Legacy POS and inventory systems</li><li>Growing e-commerce but disconnected from stores</li><li>CEO has mandated digital transformation by Q3 2026</li></ul><p><strong>Budget & Timeline:</strong></p><p>They have $5M budget allocated for this transformation. Timeline is aggressive - need solution implemented by June 2026.</p><p>Amanda is our internal champion. Robert is cautious but open-minded. Both agree our platform addresses their core needs.</p>",
+    "meetingNotesUrl": "https://notion.so/retailmax-notes",
+    "nextSteps": [
+      {
+        "action": "Prepare detailed implementation timeline",
+        "owner": "Our Team",
+        "deadline": "2026-02-05",
+        "completed": false
+      },
+      {
+        "action": "Schedule technical demo for IT team",
+        "owner": "Amanda Foster",
+        "deadline": "2026-02-12",
+        "completed": false
+      },
+      {
+        "action": "Provide retail industry references",
+        "owner": "Our Team",
+        "deadline": "2026-02-03",
+        "completed": false
+      }
+    ],
+    "contentRefs": {
+      "library": ["library-1", "library-2", "library-3"],
+      "companyContent": ["company-content-8"]
+    },
+    "createdAt": "2026-01-28T17:00:00Z",
+    "updatedAt": "2026-01-28T19:00:00Z",
+    "publishedAt": null
+  },
+  {
+    "id": "followup-5",
+    "userId": "user_demo_123",
+    "companyId": "company-5",
+    "status": "PUBLISHED",
+    "slug": "financefirst-technical-jan-2026",
+    "title": "Technical Deep Dive - FinanceFirst Partners",
+    "meetingDate": "2026-01-27",
+    "meetingType": "TECHNICAL",
+    "meetingLocation": "Zoom",
+    "meetingRecap": "<h2>Technical Architecture Discussion</h2><p>In-depth technical session with Thomas Anderson (Head of Technology) and his engineering team. Covered:</p><ul><li>System architecture and scalability</li><li>Security and compliance (SOC 2, financial industry requirements)</li><li>API capabilities and integration options</li><li>Data residency and privacy controls</li><li>Disaster recovery and business continuity</li></ul><p><strong>Technical Evaluation:</strong></p><p>Thomas and team were impressed with our architecture. They particularly liked:</p><ul><li>Multi-region deployment options</li><li>Granular access controls</li><li>Audit logging capabilities</li><li>API-first design</li></ul><p><strong>Concerns Raised:</strong></p><p>They need assurance on our financial services compliance. We'll provide SOC 2 Type II report and schedule call with our security team.</p>",
+    "meetingNotesUrl": null,
+    "nextSteps": [
+      {
+        "action": "Share SOC 2 Type II audit report",
+        "owner": "Our Team",
+        "deadline": "2026-02-01",
+        "completed": false
+      },
+      {
+        "action": "Schedule call with our CISO",
+        "owner": "Our Team",
+        "deadline": "2026-02-08",
+        "completed": false
+      },
+      {
+        "action": "Provide API documentation and sandbox access",
+        "owner": "Our Team",
+        "deadline": "2026-02-03",
+        "completed": true
+      },
+      {
+        "action": "Technical POC phase planning",
+        "owner": "Both Teams",
+        "deadline": "2026-02-15",
+        "completed": false
+      }
+    ],
+    "contentRefs": {
+      "library": ["library-6", "library-7"],
+      "companyContent": []
+    },
+    "createdAt": "2026-01-27T15:00:00Z",
+    "updatedAt": "2026-01-28T11:00:00Z",
+    "publishedAt": "2026-01-27T18:00:00Z"
+  }
+]

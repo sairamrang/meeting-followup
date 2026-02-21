@@ -1,0 +1,90 @@
+[
+  {
+    "id": "company-content-1",
+    "companyId": "company-1",
+    "type": "HISTORY",
+    "title": "Acme Corporation Background",
+    "content": "<p>Founded in 1995, Acme Corporation has grown from a regional logistics provider to a global leader in supply chain software. The company went public in 2015 (NASDAQ: ACME) and currently serves over 5,000 enterprise clients worldwide.</p><p>Recent milestones include their $200M Series D funding round in 2024 and expansion into Asian markets in 2025.</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-15T11:00:00Z",
+    "updatedAt": "2026-01-15T11:00:00Z"
+  },
+  {
+    "id": "company-content-2",
+    "companyId": "company-1",
+    "type": "LEADERSHIP",
+    "title": "Acme Leadership Team",
+    "content": "<h3>Key Leadership:</h3><ul><li><strong>CEO:</strong> John Smith (former COO of TechGiant Inc)</li><li><strong>CTO:</strong> David Chen (15+ years at Microsoft)</li><li><strong>VP Operations:</strong> Sarah Mitchell (internal promotion, 8 years at Acme)</li></ul><p>The leadership team has a strong track record of innovation and has received multiple industry awards.</p>",
+    "sortOrder": 2,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-15T11:15:00Z",
+    "updatedAt": "2026-01-15T11:15:00Z"
+  },
+  {
+    "id": "company-content-3",
+    "companyId": "company-1",
+    "type": "NOTES",
+    "title": "Sales Notes - Acme",
+    "content": "<p><strong>Initial Contact:</strong> January 15, 2026 - Warm intro from mutual connection at AWS</p><p><strong>Pain Points:</strong></p><ul><li>Legacy systems causing integration challenges</li><li>Need for real-time analytics</li><li>Looking to consolidate vendors</li></ul><p><strong>Budget:</strong> $500K-$1M annually (confirmed by Sarah Mitchell)</p><p><strong>Timeline:</strong> Q2 2026 implementation target</p><p><strong>Competition:</strong> Currently evaluating 2 other vendors</p><p><strong>Decision Makers:</strong> Sarah Mitchell (champion), David Chen (technical evaluator), CFO approval required</p>",
+    "sortOrder": 3,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-15T11:30:00Z",
+    "updatedAt": "2026-01-27T14:00:00Z"
+  },
+  {
+    "id": "company-content-4",
+    "companyId": "company-2",
+    "type": "HISTORY",
+    "title": "TechVentures Background",
+    "content": "<p>TechVentures Inc was founded in 2020 by Emily Rodriguez and a team of former Google AI researchers. The startup has raised $75M in funding and is experiencing rapid growth (300% YoY).</p><p>They specialize in AI-powered business intelligence and have 150+ customers including several Fortune 500 companies.</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-18T15:00:00Z",
+    "updatedAt": "2026-01-18T15:00:00Z"
+  },
+  {
+    "id": "company-content-5",
+    "companyId": "company-2",
+    "type": "PRODUCTS",
+    "title": "TechVentures Product Suite",
+    "content": "<h3>Current Products:</h3><ul><li><strong>DataInsight Pro:</strong> AI-powered analytics platform</li><li><strong>PredictiveEdge:</strong> Machine learning forecasting tool</li><li><strong>AutoReport:</strong> Automated reporting engine</li></ul><p>Recently launched beta of their new product, \"InsightIQ\", which uses GPT-4 for natural language data queries.</p>",
+    "sortOrder": 2,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-18T15:15:00Z",
+    "updatedAt": "2026-01-18T15:15:00Z"
+  },
+  {
+    "id": "company-content-6",
+    "companyId": "company-3",
+    "type": "HISTORY",
+    "title": "GlobalHealth Solutions Background",
+    "content": "<p>GlobalHealth Solutions was founded in 2018 in response to the growing demand for telemedicine. The company operates in 15 states and serves over 200 healthcare providers.</p><p>They received HIPAA certification in 2019 and have maintained a perfect compliance record. Recent expansion includes partnerships with 3 major hospital networks.</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-20T10:00:00Z",
+    "updatedAt": "2026-01-20T10:00:00Z"
+  },
+  {
+    "id": "company-content-7",
+    "companyId": "company-3",
+    "type": "NEWS",
+    "title": "Recent GlobalHealth News",
+    "content": "<p><strong>Q4 2025 Highlights:</strong></p><ul><li>Announced partnership with MedicalCorp (press release Dec 15)</li><li>Secured $50M Series B funding led by HealthTech Ventures</li><li>Dr. Lisa Patel joined as CMO from Johns Hopkins</li><li>Launched new patient portal with AI triage features</li></ul><p>Featured in Healthcare Today magazine as \"Top 10 HealthTech Startups to Watch in 2026\"</p>",
+    "sortOrder": 2,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-20T10:15:00Z",
+    "updatedAt": "2026-01-20T10:15:00Z"
+  },
+  {
+    "id": "company-content-8",
+    "companyId": "company-4",
+    "type": "NOTES",
+    "title": "RetailMax Sales Notes",
+    "content": "<p><strong>Initial Meeting:</strong> January 22, 2026</p><p><strong>Context:</strong> RetailMax is undergoing digital transformation. Amanda Foster is leading the initiative.</p><p><strong>Current Challenges:</strong></p><ul><li>Disconnected systems between online and in-store</li><li>Inventory management issues causing stockouts</li><li>Limited customer data integration</li></ul><p><strong>Our Fit:</strong> Strong - our platform solves 80% of their stated problems</p><p><strong>Next Steps:</strong> Technical demo scheduled for Feb 5, 2026</p><p><strong>Urgency:</strong> High - CEO mandate to complete transformation by Q3 2026</p>",
+    "sortOrder": 1,
+    "createdBy": "user_demo_123",
+    "createdAt": "2026-01-22T12:00:00Z",
+    "updatedAt": "2026-01-22T12:00:00Z"
+  }
+]
