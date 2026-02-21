@@ -1,36 +1,11 @@
 {
   "name": "meeting-follow-up",
-  "version": 2,
   "installCommand": "npm install --include=dev",
-  "builds": [
-    {
-      "src": "api/index.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "apps/frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "outputDirectory": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/index.ts"
-    },
-    {
-      "src": "/health",
-      "dest": "api/index.ts"
-    },
-    {
-      "src": "/f/(.*)",
-      "dest": "api/index.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "apps/frontend/dist/$1"
-    }
+  "buildCommand": "cd packages/shared && npx tsc --build --force && cd ../../apps/frontend && npx tsc && npx vite build",
+  "outputDirectory": "apps/frontend/dist",
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api" },
+    { "source": "/health", "destination": "/api" },
+    { "source": "/f/:path*", "destination": "/api" }
   ]
 }
