@@ -2,6 +2,7 @@
   "name": "@meeting-followup/backend",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Express API backend for Meeting Follow-Up System",
   "main": "dist/server.js",
   "scripts": {

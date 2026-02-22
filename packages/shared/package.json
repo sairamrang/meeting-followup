@@ -2,13 +2,14 @@
   "name": "@meeting-followup/shared",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Shared TypeScript types and utilities",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
+      "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
   },
