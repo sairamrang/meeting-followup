@@ -6,7 +6,7 @@
   "description": "React frontend for Meeting Follow-Up System",
   "scripts": {
     "dev": "vite",
-    "build": "cd ../../packages/shared && npx tsc --build --force && cd ../../apps/frontend && npx tsc && npx vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
