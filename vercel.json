@@ -1,11 +1,8 @@
 {
-  "name": "meeting-follow-up",
   "installCommand": "npm install --include=dev",
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "apps/frontend/dist",
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api" },
-    { "source": "/health", "destination": "/api" },
-    { "source": "/f/:path*", "destination": "/api" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

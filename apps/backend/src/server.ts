@@ -78,8 +78,8 @@ app.use(notFoundHandler);
 // Global error handler (must be last)
 app.use(errorHandler);
 
-// Start server (skip in test and serverless environments)
-if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
+// Start server
+if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);

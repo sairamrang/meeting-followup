@@ -13,7 +13,7 @@
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-    "vercel-build": "npm run build -w @meeting-followup/shared && npm run build -w @meeting-followup/backend && npm run build -w @meeting-followup/frontend"
+    "vercel-build": "npm run build -w @meeting-followup/shared && npm run build -w @meeting-followup/frontend"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.21.0",
