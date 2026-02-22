@@ -1,4 +1,4 @@
-// Vercel serverless entry point - re-exports Express app
-import app from '../apps/backend/src/server';
+// Vercel serverless entry point - re-exports compiled Express app
+import app from '../apps/backend/dist/server';
 
 export default app;
